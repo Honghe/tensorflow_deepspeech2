@@ -53,10 +53,14 @@ To train and evaluate the model, issue the following command:
 ```
 python deep_speech.py
 ```
+Example:
+```
+python deep_speech.py --train_data_dir /Data/LibriSpeech/train-clean-100/LibriSpeech/train-clean-100.csv --model_dir ./output --eval_data_dir /Data/LibriSpeech/train-clean-100/LibriSpeech/train-clean-100.csv --num_gpus -1 --batch_size 64
+```
 Arguments:
   * `--model_dir`: Directory to save model training checkpoints. By default, it is `/tmp/deep_speech_model/`.
-  * `--train_data_dir`: Directory of the training dataset.
-  * `--eval_data_dir`: Directory of the evaluation dataset.
+  * `--train_data_dir`: Path of the training dataset csv file.
+  * `--eval_data_dir`: Path of the evaluation dataset csv file..
   * `--num_gpus`: Number of GPUs to use (specify -1 if you want to use all available GPUs).
 
 There are other arguments about DeepSpeech2 model and training/evaluation process. Use the `--help` or `-h` flag to get a full list of possible arguments with detailed descriptions.

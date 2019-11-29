@@ -165,6 +165,7 @@ def download_and_process_datasets(directory, datasets):
   for dataset in datasets:
     tf.logging.info("Preparing dataset %s", dataset)
     dataset_dir = os.path.join(directory, dataset)
+    # If has downloaded and extracted the tar.gz, comment the following line of code
     download_and_extract(dataset_dir, LIBRI_SPEECH_URLS[dataset])
     convert_audio_and_split_transcript(
         dataset_dir + "/LibriSpeech", dataset, dataset + "-wav",
@@ -191,7 +192,7 @@ def main(_):
   if FLAGS.train_only:
     download_and_process_datasets(
         FLAGS.data_dir,
-        ["train-clean-100", "train-clean-360", "train-other-500"])
+        ["train-clean-100"])
   elif FLAGS.dev_only:
     download_and_process_datasets(FLAGS.data_dir, ["dev-clean", "dev-other"])
   elif FLAGS.test_only:

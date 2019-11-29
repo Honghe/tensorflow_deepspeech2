@@ -304,7 +304,11 @@ def define_deep_speech_flags():
   """Add flags for run_deep_speech."""
   # Add common flags
   flags_core.define_base(
-      data_dir=False  # we use train_data_dir and eval_data_dir instead
+      data_dir=False,  # we use train_data_dir and eval_data_dir instead
+      export_dir=True,
+      train_epochs=True,
+      hooks=True,
+      epochs_between_evals=True,
   )
   flags_core.define_performance(
       num_parallel_calls=False,
@@ -322,7 +326,8 @@ def define_deep_speech_flags():
       export_dir="/tmp/deep_speech_saved_model/",
       train_epochs=10,
       batch_size=128,
-      hooks="")
+      hooks=[],
+      epochs_between_evals=4)
 
   # Deep speech flags
   flags.DEFINE_integer(
@@ -398,6 +403,10 @@ def define_deep_speech_flags():
           "the desired wer_threshold is 0.23 which is the result achieved by "
           "MLPerf implementation."))
 
+  flags.DEFINE_integer(
+      name='num_gpus', default=-1,
+      help='num_gpus'
+  )
 
 def main(_):
   with logger.benchmark_context(flags_obj):
